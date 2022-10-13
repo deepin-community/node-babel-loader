@@ -1,0 +1,143 @@
+node-babel-loader (8.2.3-1) unstable; urgency=medium
+
+  * Team upload
+  * Fix GitHub tags regex
+  * Update standards version to 4.6.0, no changes needed.
+  * Fix filenamemangle
+  * New upstream version 8.2.3
+  * Fix test patch for tape ≥ 5 (Closes: #997577)
+
+ -- Yadd <yadd@debian.org>  Mon, 25 Oct 2021 11:00:05 +0200
+
+node-babel-loader (8.2.2-5) unstable; urgency=medium
+
+  * Team upload.
+  * Enable upstream test using tape instead of ava
+
+ -- Xavier Guimard <yadd@debian.org>  Mon, 18 Jan 2021 13:17:42 +0100
+
+node-babel-loader (8.2.2-4) unstable; urgency=medium
+
+  * Team upload.
+  * Update minimum version of dependencies and match dependencies with
+    package.json
+
+ -- Pirate Praveen <praveen@debian.org>  Mon, 18 Jan 2021 00:29:55 +0530
+
+node-babel-loader (8.2.2-3) unstable; urgency=medium
+
+  * Team upload.
+  * Update minimum version of schema-utils in Depends and package.json
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 22 Dec 2020 01:00:13 +0530
+
+node-babel-loader (8.2.2-2) unstable; urgency=medium
+
+  * Team upload.
+
+  * build-depend on recent node-babel-core
+    (not node-babel7);
+    depend on recent node-babel-cli node-babel-core node-babel-preset-env
+    (not node-babel7)
+
+ -- Jonas Smedegaard <dr@jones.dk>  Fri, 18 Dec 2020 16:08:43 +0100
+
+node-babel-loader (8.2.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 8.2.2
+
+ -- Xavier Guimard <yadd@debian.org>  Sun, 29 Nov 2020 07:13:11 +0100
+
+node-babel-loader (8.2.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable after successful test
+
+ -- Xavier Guimard <yadd@debian.org>  Thu, 19 Nov 2020 08:38:21 +0100
+
+node-babel-loader (8.2.1-1) experimental; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Submit.
+  * Remove obsolete fields Contact, Name from debian/upstream/metadata (already
+    present in machine-readable debian/copyright).
+
+  [ Xavier Guimard ]
+  * Use dh-sequence-nodejs
+  * Declare compliance with policy 4.5.1
+  * Modernize debian/watch
+  * New upstream version 8.2.1
+  * Add fix for node-schema-utils ≥ 3
+
+ -- Xavier Guimard <yadd@debian.org>  Wed, 18 Nov 2020 06:46:35 +0100
+
+node-babel-loader (8.1.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Really reupload to unstable
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 10 May 2020 14:22:22 +0530
+
+node-babel-loader (8.1.0-2) experimental; urgency=medium
+
+  * Team upload.
+  * Reupload to unstable (reverse build dependencies are fixed/filed bugs)
+
+ -- Pirate Praveen <praveen@debian.org>  Sun, 10 May 2020 13:57:55 +0530
+
+node-babel-loader (8.1.0-1) experimental; urgency=medium
+
+  * Team Upload.
+
+  [ Xavier Guimard ]
+  * Add upstream/metadata
+
+  [ Daniel Ring ]
+  * Update d/copyright URL format
+
+  [ Nilesh Patra ]
+  * New upstream version 8.1.0
+  * Update Build-depends and Depends
+  * Update rules wrt new version
+  * Update Build-deps, use pkg-js-tools auto-install
+  * Remove tests/{control,require} don't run tests since ava is not packaged
+  * Drop compat, switch to debhelper-compat
+  * Add "Rules-Requires-Root:no"
+  * Bump Standards version to 4.5.0
+
+ -- Nilesh Patra <npatra974@gmail.com>  Sat, 02 May 2020 15:38:10 +0530
+
+node-babel-loader (7.1.5-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Daniel Ring <dring@wolfishly.me>  Wed, 26 Dec 2018 20:40:43 -0800
+
+node-babel-loader (7.1.2-4) unstable; urgency=low
+
+  * Added node-babel-core to depends list and webpack to enhances list
+
+ -- Daniel Ring <dring@wolfishly.me>  Wed, 13 Dec 2017 19:34:28 -0800
+
+node-babel-loader (7.1.2-3) unstable; urgency=medium
+
+  * Team upload
+  * babel command is now babeljs
+
+ -- Pirate Praveen <praveen@debian.org>  Tue, 03 Oct 2017 21:21:08 +0530
+
+node-babel-loader (7.1.2-2) unstable; urgency=low
+
+  * Moved to main as all dependencies and build-deps are now in main
+
+ -- Daniel Ring <dring@wolfishly.me>  Tue, 26 Sep 2017 03:30:21 -0700
+
+node-babel-loader (7.1.2-1) unstable; urgency=low
+
+  * Initial release (Closes: #845130)
+  * Fixed build process to use only packages in Debian
+
+ -- Daniel Ring <dring@wolfishly.me>  Wed, 13 Sep 2017 23:57:30 -0700

@@ -1,0 +1,40 @@
+Source: node-babel-loader
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Daniel Ring <dring@wolfishly.me>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends: debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , node-babel-core (>= 7)
+ , node-find-cache-dir (>= 3.3.1~)
+ , node-loader-utils (>= 1.4~)
+ , node-make-dir (>= 3.1~)
+ , node-schema-utils (>= 3.0~)
+ , node-tape <!nocheck>
+ , webpack <!nocheck>
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-babel-loader
+Vcs-Git: https://salsa.debian.org/js-team/node-babel-loader.git
+Homepage: https://github.com/babel/babel-loader
+Rules-Requires-Root: no
+
+Package: node-babel-loader
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+ , node-babel-core (>= 7)
+ , node-find-cache-dir (>= 3.3.1~)
+ , node-loader-utils (>= 1.4~)
+ , node-make-dir (>= 3.1~)
+ , node-schema-utils (>= 3.0~)
+Enhances: webpack (>= 4.0.0)
+Description: babel module loader for webpack
+ This library is a babel loader module for webpack.
+ .
+ Webpack takes code targeted at node.js and makes it run in the browser.
+ Node.js comes with API of its own that is not available in the browsers.
+ Webpack exposes this code to programs that are unaware they are running in a
+ browser.
+ .
+ Node.js is an event-based server-side JavaScript engine.

@@ -1,0 +1,27 @@
+Description: fix for node-schema-utils ≥ 3
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: no
+Last-Update: 2020-11-18
+
+--- a/src/index.js
++++ b/src/index.js
+@@ -27,7 +27,7 @@
+ 
+ const { isAbsolute } = require("path");
+ const loaderUtils = require("loader-utils");
+-const validateOptions = require("schema-utils");
++const validateOptions = require("schema-utils").validate;
+ 
+ function subscribe(subscriber, metadata, context) {
+   if (context[subscriber]) {
+--- a/package.json
++++ b/package.json
+@@ -13,7 +13,7 @@
+     "find-cache-dir": "^3.3.1",
+     "loader-utils": "^1.4.0",
+     "make-dir": "^3.1.0",
+-    "schema-utils": "^2.6.5"
++    "schema-utils": "^3.0.0"
+   },
+   "peerDependencies": {
+     "@babel/core": "^7.0.0",

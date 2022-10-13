@@ -1,0 +1,2 @@
+mkdir -p test/output/cache/cachefiles
+tape test/*.test.js
