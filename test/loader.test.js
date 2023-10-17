@@ -17,7 +17,10 @@ const globalConfig = {
         test: /\.jsx?/,
         loader: babelLoader,
         options: {
-          presets: ["@babel/preset-env"],
+          targets: "chrome 42",
+          presets: [["@babel/preset-env", { bugfixes: true, loose: true }]],
+          configFile: false,
+          babelrc: false,
         },
         exclude: /node_modules/,
       },
@@ -54,10 +57,10 @@ test.cb("should transpile the code snippet", t => {
       t.true(files.length === 1);
       fs.readFile(path.resolve(t.context.directory, files[0]), (err, data) => {
         t.is(err, null);
-        const test = "var App = function App()";
+        const test = "var App = function App(arg)";
         const subject = data.toString();
 
-        t.not(subject.indexOf(test), -1);
+        t.true(subject.includes(test));
 
         t.end();
       });
@@ -177,6 +180,41 @@ test.cb("should load ESM config files", t => {
       // "modules aren't supported" or "modules not supported".
       t.regex(babelLoaderError.message, /supported/i);
     }
+    t.deepEqual(stats.compilation.warnings, []);
+    t.end();
+  });
+});
+
+test.cb("should track external dependencies", t => {
+  const dep = path.join(__dirname, "fixtures/metadata.js");
+  const config = Object.assign({}, globalConfig, {
+    entry: path.join(__dirname, "fixtures/constant.js"),
+    output: {
+      path: t.context.directory,
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          loader: babelLoader,
+          options: {
+            babelrc: false,
+            configFile: false,
+            plugins: [
+              api => {
+                api.cache.never();
+                api.addExternalDependency(dep);
+                return { visitor: {} };
+              },
+            ],
+          },
+        },
+      ],
+    },
+  });
+
+  webpack(config, (err, stats) => {
+    t.true(stats.compilation.fileDependencies.has(dep));
     t.deepEqual(stats.compilation.warnings, []);
     t.end();
   });

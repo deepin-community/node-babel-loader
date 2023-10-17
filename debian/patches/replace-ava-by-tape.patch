@@ -1,7 +1,7 @@
 Description: replace ava by tape
-Author: Xavier Guimard <yadd@debian.org>
+Author: Yadd <yadd@debian.org>
 Forwarded: not-needed
-Last-Update: 2021-10-25
+Last-Update: 2022-11-04
 
 --- a/test/cache.test.js
 +++ b/test/cache.test.js
@@ -21,9 +21,9 @@ Last-Update: 2021-10-25
  
  const defaultCacheDir = path.join(
    __dirname,
-@@ -27,31 +27,29 @@
-   },
- };
+@@ -31,31 +31,29 @@
+ const UNCOMPRESSED_CACHE_FILE_REGEX = /^[0-9a-f]{32}(?:[0-9a-f]{32})?\.json$/;
+ const CACHE_FILE_REGEX = /^[0-9a-f]{32}(?:[0-9a-f]{32})?\.json\.gz$/;
  
 +const context = {};
 +
@@ -66,7 +66,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -60,7 +58,7 @@
+@@ -64,7 +62,7 @@
            loader: babelLoader,
            exclude: /node_modules/,
            options: {
@@ -75,7 +75,7 @@ Last-Update: 2021-10-25
              presets: ["@babel/preset-env"],
            },
          },
-@@ -73,20 +71,21 @@
+@@ -77,20 +75,21 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -102,7 +102,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -113,18 +112,19 @@
+@@ -117,18 +116,19 @@
  
          t.is(err, null);
          t.true(files.length > 0);
@@ -125,7 +125,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -150,18 +150,19 @@
+@@ -154,18 +154,19 @@
  
          t.is(err, null);
          t.true(files.length > 0);
@@ -148,7 +148,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -185,16 +186,17 @@
+@@ -193,16 +194,17 @@
          t.is(err, null);
  
          t.true(files.length > 0);
@@ -169,7 +169,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -203,7 +205,7 @@
+@@ -211,7 +213,7 @@
            loader: babelLoader,
            exclude: /node_modules/,
            options: {
@@ -178,7 +178,7 @@ Last-Update: 2021-10-25
              presets: ["@babel/preset-env"],
            },
          },
-@@ -220,19 +222,20 @@
+@@ -228,19 +230,20 @@
  
      webpack(config, err => {
        t.is(err, null);
@@ -203,7 +203,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -241,7 +244,7 @@
+@@ -249,7 +252,7 @@
            loader: babelLoader,
            exclude: /node_modules/,
            options: {
@@ -212,7 +212,7 @@ Last-Update: 2021-10-25
              presets: ["@babel/preset-env"],
            },
          },
-@@ -254,19 +257,19 @@
+@@ -262,19 +265,19 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -237,7 +237,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -275,7 +278,7 @@
+@@ -283,7 +286,7 @@
              loader: babelLoader,
              exclude: /node_modules/,
              options: {
@@ -246,7 +246,7 @@ Last-Update: 2021-10-25
                cacheIdentifier: "a",
                presets: ["@babel/preset-env"],
              },
-@@ -285,7 +288,7 @@
+@@ -293,7 +296,7 @@
      }),
      Object.assign({}, globalConfig, {
        output: {
@@ -255,7 +255,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -294,7 +297,7 @@
+@@ -302,7 +305,7 @@
              loader: babelLoader,
              exclude: /node_modules/,
              options: {
@@ -264,7 +264,7 @@ Last-Update: 2021-10-25
                cacheIdentifier: "b",
                presets: ["@babel/preset-env"],
              },
-@@ -313,22 +316,22 @@
+@@ -321,22 +324,22 @@
        counter -= 1;
  
        if (!counter) {
@@ -292,7 +292,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -337,7 +340,7 @@
+@@ -345,7 +348,7 @@
              loader: babelLoader,
              exclude: /node_modules/,
              options: {
@@ -301,7 +301,7 @@ Last-Update: 2021-10-25
                extends: path.join(__dirname, "fixtures/babelrc"),
                babelrc: false,
                presets: ["@babel/preset-env"],
-@@ -349,7 +352,7 @@
+@@ -357,7 +360,7 @@
      Object.assign({}, globalConfig, {
        entry: path.join(__dirname, "fixtures/constant.js"),
        output: {
@@ -310,7 +310,7 @@ Last-Update: 2021-10-25
        },
        module: {
          rules: [
-@@ -358,7 +361,7 @@
+@@ -366,7 +369,7 @@
              loader: babelLoader,
              exclude: /node_modules/,
              options: {
@@ -319,7 +319,7 @@ Last-Update: 2021-10-25
                presets: ["@babel/preset-env"],
              },
            },
-@@ -374,10 +377,8 @@
+@@ -382,10 +385,8 @@
      t.deepEqual(multiStats.stats[1].compilation.errors, []);
      t.deepEqual(multiStats.stats[1].compilation.warnings, []);
  
@@ -446,7 +446,7 @@ Last-Update: 2021-10-25
  
  const outputDir = path.join(__dirname, "output/loader");
  const babelLoader = path.join(__dirname, "../lib");
-@@ -25,22 +25,23 @@
+@@ -28,22 +28,23 @@
    },
  };
  
@@ -479,7 +479,7 @@ Last-Update: 2021-10-25
      },
    });
  
-@@ -49,27 +50,25 @@
+@@ -52,10 +53,11 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -491,12 +491,11 @@ Last-Update: 2021-10-25
 -      fs.readFile(path.resolve(t.context.directory, files[0]), (err, data) => {
 +      fs.readFile(path.resolve(context.directory, files[0]), (err, data) => {
          t.is(err, null);
--        const test = "var App = function App()";
--        const subject = data.toString();
--
--        t.not(subject.indexOf(test), -1);
--
--        t.end();
+         const test = "var App = function App(arg)";
+         const subject = data.toString();
+@@ -64,15 +66,18 @@
+ 
+         t.end();
        });
 +      */
      });
@@ -515,7 +514,7 @@ Last-Update: 2021-10-25
      },
    });
  
-@@ -77,17 +76,17 @@
+@@ -80,17 +85,17 @@
      t.true(stats.compilation.errors.length === 1);
      t.true(stats.compilation.errors[0] instanceof Error);
      t.deepEqual(stats.compilation.warnings, []);
@@ -537,7 +536,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -104,18 +103,18 @@
+@@ -107,18 +112,18 @@
      t.is(err, null);
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
@@ -560,7 +559,7 @@ Last-Update: 2021-10-25
        },
      });
      webpack(config, (err, stats) => {
-@@ -123,17 +122,18 @@
+@@ -126,17 +131,18 @@
        t.deepEqual(stats.compilation.warnings, []);
        const moduleBuildError = stats.compilation.errors[0];
        const babelLoaderError = moduleBuildError.error;
@@ -583,13 +582,34 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -175,9 +175,8 @@
+@@ -178,19 +184,20 @@
        t.true(babelLoaderError instanceof Error);
        // Error messages are slightly different between versions:
        // "modules aren't supported" or "modules not supported".
 -      t.regex(babelLoaderError.message, /supported/i);
 +      t.ok(babelLoaderError.message.match(/supported/i));
      }
+     t.deepEqual(stats.compilation.warnings, []);
+-    t.end();
+   });
+ });
+ 
+-test.cb("should track external dependencies", t => {
++test("should track external dependencies", t => {
++  beforeEach(t);
++  t.plan(2);
+   const dep = path.join(__dirname, "fixtures/metadata.js");
+   const config = Object.assign({}, globalConfig, {
+     entry: path.join(__dirname, "fixtures/constant.js"),
+     output: {
+-      path: t.context.directory,
++      path: context.directory,
+     },
+     module: {
+       rules: [
+@@ -216,6 +223,5 @@
+   webpack(config, (err, stats) => {
+     t.true(stats.compilation.fileDependencies.has(dep));
      t.deepEqual(stats.compilation.warnings, []);
 -    t.end();
    });
@@ -767,7 +787,7 @@ Last-Update: 2021-10-25
  
  const outputDir = path.join(__dirname, "output/options");
  const babelLoader = path.join(__dirname, "../lib");
-@@ -21,22 +21,22 @@
+@@ -24,22 +24,22 @@
    },
  };
  
@@ -852,7 +872,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -56,31 +56,35 @@
+@@ -59,31 +59,35 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -894,7 +914,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -102,7 +106,7 @@
+@@ -105,7 +109,7 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -903,7 +923,7 @@ Last-Update: 2021-10-25
        t.is(err, null);
  
        const map = files.filter(file => file.includes(".map"));
-@@ -110,7 +114,7 @@
+@@ -113,7 +117,7 @@
        t.true(map.length > 0);
  
        if (map.length > 0) {
@@ -912,7 +932,7 @@ Last-Update: 2021-10-25
            t.is(err, null);
  
            const mapObj = JSON.parse(data.toString());
-@@ -122,12 +126,12 @@
+@@ -125,12 +129,12 @@
              );
  
              // Ensure that the map contains the original code, not the compiled src.
@@ -927,7 +947,7 @@ Last-Update: 2021-10-25
            }
            t.end();
          });
-@@ -136,11 +140,12 @@
+@@ -139,11 +143,12 @@
    });
  });
  
@@ -942,7 +962,7 @@ Last-Update: 2021-10-25
        devtoolModuleFilenameTemplate: "=!=!=!=[absolute-resource-path]=!=!=!=",
      },
      module: {
-@@ -159,7 +164,7 @@
+@@ -165,7 +170,7 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -951,7 +971,7 @@ Last-Update: 2021-10-25
        t.is(err, null);
  
        const map = files.filter(file => file.includes(".map"));
-@@ -167,12 +172,12 @@
+@@ -173,12 +178,12 @@
        t.true(map.length > 0);
  
        if (map.length > 0) {
@@ -967,7 +987,7 @@ Last-Update: 2021-10-25
              new RegExp(
                JSON.stringify(
                  `=!=!=!=${globalConfig.entry.replace(
-@@ -181,7 +186,7 @@
+@@ -187,7 +192,7 @@
                    "(?:/|\\\\)",
                  )}=!=!=!=`,
                ),
@@ -976,7 +996,7 @@ Last-Update: 2021-10-25
            );
  
            t.end();
-@@ -191,11 +196,12 @@
+@@ -197,11 +202,12 @@
    });
  });
  
@@ -991,7 +1011,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -217,7 +223,7 @@
+@@ -223,7 +229,7 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -1000,7 +1020,7 @@ Last-Update: 2021-10-25
        t.is(err, null);
  
        const map = files.filter(file => file.includes(".map"));
-@@ -225,7 +231,7 @@
+@@ -231,7 +237,7 @@
        t.true(map.length > 0);
  
        if (map.length > 0) {
@@ -1009,7 +1029,7 @@ Last-Update: 2021-10-25
            t.is(err, null);
  
            const mapObj = JSON.parse(data.toString());
-@@ -238,13 +244,13 @@
+@@ -244,13 +250,13 @@
  
              // Ensure that the code contains Babel's compiled output, because
              // sourcemaps from Babel are disabled.
@@ -1025,7 +1045,7 @@ Last-Update: 2021-10-25
            }
  
            t.end();
-@@ -254,11 +260,12 @@
+@@ -260,11 +266,12 @@
    });
  });
  
@@ -1040,7 +1060,7 @@ Last-Update: 2021-10-25
      },
      module: {
        rules: [
-@@ -280,7 +287,7 @@
+@@ -286,7 +293,7 @@
      t.deepEqual(stats.compilation.errors, []);
      t.deepEqual(stats.compilation.warnings, []);
  
@@ -1049,7 +1069,7 @@ Last-Update: 2021-10-25
        t.is(err, null);
  
        const map = files.filter(file => file.includes(".map"));
-@@ -288,7 +295,7 @@
+@@ -294,7 +301,7 @@
        t.true(map.length > 0);
  
        if (map.length > 0) {
@@ -1058,7 +1078,7 @@ Last-Update: 2021-10-25
            t.is(err, null);
  
            const mapObj = JSON.parse(data.toString());
-@@ -301,13 +308,12 @@
+@@ -307,13 +314,12 @@
  
              // Ensure that the code contains Babel's compiled output, because
              // sourcemaps from Babel are disabled.
