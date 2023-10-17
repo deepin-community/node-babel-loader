@@ -10,7 +10,3 @@
 override_dh_auto_build:
 	babeljs src -d lib --no-babelrc --copy-files
 	sed -i '1s/^/"use strict";\n\n/' lib/*.js
-
-override_dh_auto_clean:
-	rm -rf lib
-	dh_auto_clean

@@ -7,23 +7,28 @@
  * @see https://github.com/babel/babel-loader/issues/34
  * @see https://github.com/babel/babel-loader/pull/41
  */
-const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const zlib = require("zlib");
 const crypto = require("crypto");
 const findCacheDir = require("find-cache-dir");
 const { promisify } = require("util");
+const { readFile, writeFile, mkdir } = require("fs/promises");
 
 const transform = require("./transform");
 // Lazily instantiated when needed
 let defaultCacheDirectory = null;
 
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
+let hashType = "sha256";
+// use md5 hashing if sha256 is not available
+try {
+  crypto.createHash(hashType);
+} catch (err) {
+  hashType = "md5";
+}
+
 const gunzip = promisify(zlib.gunzip);
 const gzip = promisify(zlib.gzip);
-const makeDir = require("make-dir");
 
 /**
  * Read the contents from the compressed file.
@@ -63,13 +68,6 @@ const write = async function (filename, compress, result) {
  * @return {String}
  */
 const filename = function (source, identifier, options) {
-  // md4 hashing is not supported starting with node v17.0.0
-  const majorNodeVersion = parseInt(process.versions.node.split(".")[0], 10);
-  let hashType = "md4";
-  if (majorNodeVersion >= 17) {
-    hashType = "md5";
-  }
-
   const hash = crypto.createHash(hashType);
 
   const contents = JSON.stringify({ source, options, identifier });
@@ -107,7 +105,8 @@ const handleCache = async function (directory, params) {
 
   // Make sure the directory exists.
   try {
-    await makeDir(directory);
+    // overwrite directory if exists
+    await mkdir(directory, { recursive: true });
   } catch (err) {
     if (fallback) {
       return handleCache(os.tmpdir(), params);
@@ -120,15 +119,19 @@ const handleCache = async function (directory, params) {
   // return it to the user asap and write it in cache
   const result = await transform(source, options);
 
-  try {
-    await write(file, cacheCompression, result);
-  } catch (err) {
-    if (fallback) {
-      // Fallback to tmpdir if node_modules folder not writable
-      return handleCache(os.tmpdir(), params);
-    }
+  // Do not cache if there are external dependencies,
+  // since they might change and we cannot control it.
+  if (!result.externalDependencies.length) {
+    try {
+      await write(file, cacheCompression, result);
+    } catch (err) {
+      if (fallback) {
+        // Fallback to tmpdir if node_modules folder not writable
+        return handleCache(os.tmpdir(), params);
+      }
 
-    throw err;
+      throw err;
+    }
   }
 
   return result;

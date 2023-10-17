@@ -1,3 +1,58 @@
+node-babel-loader (9.1.0-3) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable after successful tests
+
+ -- Yadd <yadd@debian.org>  Wed, 23 Nov 2022 14:29:11 +0100
+
+node-babel-loader (9.1.0-2) experimental; urgency=medium
+
+  * Team upload
+  * Don't require node-schema-utils 4, version 3 is enough here
+
+ -- Yadd <yadd@debian.org>  Wed, 23 Nov 2022 11:13:50 +0100
+
+node-babel-loader (9.1.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 9.1.0
+  * Refresh patches
+
+ -- Yadd <yadd@debian.org>  Fri, 04 Nov 2022 14:46:57 +0100
+
+node-babel-loader (9.0.0-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream version 9.0.0
+  * Refresh patches
+  * Require node-schema-utils >= 4
+
+ -- Yadd <yadd@debian.org>  Sun, 30 Oct 2022 17:41:26 +0100
+
+node-babel-loader (8.2.5-2) unstable; urgency=medium
+
+  * Team upload
+  * Declare compliance with policy 4.6.1
+  * Fix clean
+  * Fix test for webpack5 and tape (instead of ava 3) (Closes: #1011804)
+
+ -- Yadd <yadd@debian.org>  Tue, 31 May 2022 18:44:20 +0200
+
+node-babel-loader (8.2.5-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 8.2.5
+
+ -- Yadd <yadd@debian.org>  Mon, 25 Apr 2022 18:08:03 +0200
+
+node-babel-loader (8.2.4-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream version 8.2.4
+  * Refresh patches
+
+ -- Yadd <yadd@debian.org>  Sat, 26 Mar 2022 07:37:53 +0100
+
 node-babel-loader (8.2.3-1) unstable; urgency=medium
 
   * Team upload
