@@ -1,2 +1,2 @@
-fix-for-schema-utils-3.diff
 replace-ava-by-tape.patch
+fix-test-for-webpack5-with-tape.patch
